@@ -30,3 +30,7 @@ database:
 
     - 'mongo admin --eval ''db.printShardingStatus()'''
 
+test:
+  override:
+    - bundle exec rake test
+
