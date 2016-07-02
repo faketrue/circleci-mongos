@@ -18,7 +18,7 @@ dependencies:
     - mongod --configsvr --dbpath $HOME/data/mongoc3 --logpath $HOME/log/mongoc3.log --port 27013 --fork
     - mongos --configdb localhost:27011,localhost:27012,localhost:27013 --logpath $HOME/log/mongos1.log --chunkSize 1 --port 27017 --fork
 
-    # - mongo admin --eval 'db.runCommand({"addShard":"localhost:27031"})'
+    - mongo admin --eval ''db.runCommand({"addShard":"localhost:27031"})''
     # - mongo admin --eval 'db.runCommand({"addShard":"localhost:27032"})'
     # - mongo admin --eval 'db.runCommand({"addShard":"localhost:27033"})'
     # - mongo admin --eval 'db.adminCommand({"enableSharding":"circle_test"})'
