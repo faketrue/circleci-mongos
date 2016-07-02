@@ -22,7 +22,7 @@ database:
     - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27032"})'''
     - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27033"})'''
     - 'mongo admin --eval ''db.adminCommand({"enableSharding":"circle_test"})'''
-    - 'mongo admin --eval ''db.adminCommand({"shardCollection":"circle_test.blog", "key":{"userId": 1}})'''
+    - 'mongo admin --eval ''db.adminCommand({"shardCollection":"circle_test.blogs", "key":{"user_id": 1}})'''
 
     - 'mongo admin --eval ''db.printShardingStatus()'''
 
