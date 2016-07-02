@@ -13,5 +13,16 @@ class TestBlog < Minitest::Test
 
     assert_equal(false, blog.nil?)
   end
+
+  def test_without_shard_key
+    assert_raises do
+      Blog.where(name: 'masahiro')
+          .find_and_modify(
+            {'$set' => {name: 'masahiro', user_id: 1}},
+            new: true,
+            upsert: true,
+          )
+    end
+  end
 end
 
