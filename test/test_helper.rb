@@ -1,4 +1,3 @@
-require 'minitest/autorun'
 require 'mongoid'
 
 yaml_file = File.expand_path('../mongoid.yml', File.dirname(__FILE__))

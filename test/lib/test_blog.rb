@@ -1,3 +1,4 @@
+require 'minitest/autorun'
 require 'blog'
 
 class TestBlog < Minitest::Test
