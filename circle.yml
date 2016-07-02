@@ -1,4 +1,4 @@
 dependencies:
   pre:
-    - sudo servce mongodb stop
+    - sudo service mongodb stop
 
