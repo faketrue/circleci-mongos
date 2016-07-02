@@ -19,7 +19,7 @@ database:
     - mongos --configdb localhost:27011,localhost:27012,localhost:27013 --logpath $HOME/log/mongos1.log --chunkSize 1 --port 27017 --fork
 
   override:
-    - 'mongo admin --eval 'db.runCommand({"addShard":"localhost:27031"})''
+    - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27031"})'''
     # - mongo admin --eval 'db.runCommand({"addShard":"localhost:27032"})'
     # - mongo admin --eval 'db.runCommand({"addShard":"localhost:27033"})'
     # - mongo admin --eval 'db.adminCommand({"enableSharding":"circle_test"})'
