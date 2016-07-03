@@ -10,17 +10,13 @@ database:
     - mkdir -p $HOME/data/mongod2
     - mkdir -p $HOME/data/mongod3
     - mkdir -p $HOME/data/mongoc1
-    - mkdir -p $HOME/data/mongoc2
-    - mkdir -p $HOME/data/mongoc3
     - mkdir $HOME/log
 
     - mongod --shardsvr --dbpath $HOME/data/mongod1 --logpath $HOME/log/mongod1.log --port 27031 --fork
     - mongod --shardsvr --dbpath $HOME/data/mongod2 --logpath $HOME/log/mongod2.log --port 27032 --fork
     - mongod --shardsvr --dbpath $HOME/data/mongod3 --logpath $HOME/log/mongod3.log --port 27033 --fork
     - mongod --configsvr --dbpath $HOME/data/mongoc1 --logpath $HOME/log/mongoc1.log --port 27011 --fork
-    - mongod --configsvr --dbpath $HOME/data/mongoc2 --logpath $HOME/log/mongoc2.log --port 27012 --fork
-    - mongod --configsvr --dbpath $HOME/data/mongoc3 --logpath $HOME/log/mongoc3.log --port 27013 --fork
-    - mongos --configdb localhost:27011,localhost:27012,localhost:27013 --logpath $HOME/log/mongos1.log --chunkSize 1 --port 27017 --fork
+    - mongos --configdb localhost:27011 --logpath $HOME/log/mongos1.log --chunkSize 1 --port 27017 --fork
 
     - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27031"})'''
     - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27032"})'''
