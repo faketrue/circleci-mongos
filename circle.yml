@@ -13,6 +13,7 @@ database:
     - sudo service mongodb stop
 
     - docker-compose up -d
+    - sleep 5
 
     - 'mongo admin --eval ''db.runCommand({"addShard":"mongod1:27017"})'''
     - 'mongo admin --eval ''db.runCommand({"addShard":"mongod2:27017"})'''
