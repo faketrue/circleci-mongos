@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+  mongod1:
+    image: mongo:2.6.11
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod1.log --port 27017
+    environment:
+      TERM: xterm
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mongod1:/data/db
+    networks:
+      - mongo
+
+  mongod2:
+    image: mongo:2.6.11
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod2.log --port 27017
+    environment:
+      TERM: xterm
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mongod2:/data/db
+    networks:
+      - mongo
+
+  mongod3:
+    image: mongo:2.6.11
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod3.log --port 27017
+    environment:
+      TERM: xterm
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mongod3:/data/db
+    networks:
+      - mongo
+
+  mongoc:
+    image: mongo:2.6.11
+    command: mongod --configsvr --noprealloc --smallfiles --noauth --dbpath /data/db --logpath /data/db/mongoc.log --port 27017
+    environment:
+      TERM: xterm
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mongoc:/data/db
+    networks:
+      - mongo
+
+  mongos:
+    image: mongo:2.6.11
+    command: mongos --configdb mongoc:27017 --logpath /data/db/mongos.log --chunkSize 1 --port 27017
+    environment:
+      TERM: xterm
+    ports:
+      - 27017:27017
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/mongos:/data/db
+    networks:
+      - mongo
+    depends_on:
+      - mongod1
+      - mongod2
+      - mongod3
+      - mongoc
+
+networks:
+  mongo:
+

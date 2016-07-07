@@ -12,21 +12,11 @@ database:
   pre:
     - sudo service mongodb stop
 
-    - mkdir -p $HOME/data/mongod1
-    - mkdir -p $HOME/data/mongod2
-    - mkdir -p $HOME/data/mongod3
-    - mkdir -p $HOME/data/mongoc1
-    - mkdir $HOME/log
+    - docker-compose up -d
 
-    - mongod --shardsvr --dbpath $HOME/data/mongod1 --logpath $HOME/log/mongod1.log --port 27031 --fork
-    - mongod --shardsvr --dbpath $HOME/data/mongod2 --logpath $HOME/log/mongod2.log --port 27032 --fork
-    - mongod --shardsvr --dbpath $HOME/data/mongod3 --logpath $HOME/log/mongod3.log --port 27033 --fork
-    - mongod --configsvr --dbpath $HOME/data/mongoc1 --logpath $HOME/log/mongoc1.log --port 27011 --fork
-    - mongos --configdb localhost:27011 --logpath $HOME/log/mongos1.log --chunkSize 1 --port 27017 --fork
-
-    - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27031"})'''
-    - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27032"})'''
-    - 'mongo admin --eval ''db.runCommand({"addShard":"localhost:27033"})'''
+    - 'mongo admin --eval ''db.runCommand({"addShard":"mongod1:27017"})'''
+    - 'mongo admin --eval ''db.runCommand({"addShard":"mongod2:27017"})'''
+    - 'mongo admin --eval ''db.runCommand({"addShard":"mongod3:27017"})'''
     - 'mongo admin --eval ''db.adminCommand({"enableSharding":"circle_test"})'''
     - 'mongo admin --eval ''db.adminCommand({"shardCollection":"circle_test.blogs", "key":{"user_id": 1}})'''
 
