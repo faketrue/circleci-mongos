@@ -3,7 +3,7 @@ version: '2'
 services:
   mongod1:
     image: mongo:2.6.11
-    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod1.log --port 27017
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --dbpath /data/db --logpath /data/db/mongod1.log --port 27017
     environment:
       TERM: xterm
     volumes:
@@ -14,7 +14,7 @@ services:
 
   mongod2:
     image: mongo:2.6.11
-    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod2.log --port 27017
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --dbpath /data/db --logpath /data/db/mongod2.log --port 27017
     environment:
       TERM: xterm
     volumes:
@@ -25,7 +25,7 @@ services:
 
   mongod3:
     image: mongo:2.6.11
-    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --noauth --dbpath /data/db --logpath /data/db/mongod3.log --port 27017
+    command: mongod --shardsvr --noprealloc --smallfiles --nojournal --oplogSize 16 --dbpath /data/db --logpath /data/db/mongod3.log --port 27017
     environment:
       TERM: xterm
     volumes:
