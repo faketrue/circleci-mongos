@@ -47,7 +47,7 @@ services:
 
   mongos:
     image: mongo:2.6.11
-    command: mongos --configdb mongoc:27017 --logpath /data/db/mongos.log --chunkSize 1 --port 27017
+    command: mongos --configdb mongoc:27017 --logpath /data/db/mongos.log --port 27017
     environment:
       TERM: xterm
     ports:
